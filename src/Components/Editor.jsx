@@ -9,7 +9,7 @@ const Editor = ({ titleValue, titleHandleChange, contentValue, contentHandleChan
             <textarea type="text" name="content" id="content" className="form-control" rows="10" value={contentValue} onChange={contentHandleChange} />
         </div>
         <div>
-            <button type="submit" className="btn btn-primary" >Save</button>
+            <button type="submit" className="btn btn-outline-primary" >Save</button>
         </div>
     </form>
 
