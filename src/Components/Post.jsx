@@ -1,5 +1,5 @@
 const Post = ({ title, content, deleteMethod, id, selected, setSelected }) =>
-    <div className={`card mb-3 ${selected === null ? ('') : (
+    <div className={`card mb-3 row ${selected === null ? ('') : (
         selected.id === id ? 'bg-primary-subtle border-primary-subtle' : ''
     )}`}
         onClick={setSelected}
