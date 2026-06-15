@@ -1,0 +1,7 @@
+/node_modules
+.gitignore
+.prettierrc
+eslint.config.js
+package-lock.json
+package.json
+vite.config.js
