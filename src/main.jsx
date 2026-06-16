@@ -10,19 +10,21 @@ import PostDetail from './components/PostDetail.jsx'
 import LogIn from './components/LogIn.jsx'
 import LogOut from './components/LogOut.jsx'
 import TaggedPosts from './components/TaggedPosts.jsx'
+import UserList from './components/UserList.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
       <Route element={<App />}>
         <Route index element={<PostList />} />
-        <Route path='posts/:id' element={<PostDetail />} />
         <Route path='log-in' element={<LogIn />} />
         <Route path='log-out' element={<LogOut />} />
-        <Route path='tags/:id' element={<TaggedPosts />} />
         <Route path='posts' element={<PostList />} />
-        <Route path='users' element={<h1>User list</h1>} />
+        <Route path='posts/:id' element={<PostDetail />} />
         <Route path='tags' element={<h1>Tag list</h1>} />
+        <Route path='tags/:id' element={<TaggedPosts />} />        
+        <Route path='users' element={<UserList />} />
+        <Route path='users/:id' element={<h1>User detail</h1>} />
       </Route>
     </Routes>
   </BrowserRouter>,
