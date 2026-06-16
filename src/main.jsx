@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import './scss/styles.scss'
 import * as boostrap from 'bootstrap'
-import { BrowserRouter, Routes, Route } from 'react-router'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
 import App from './App.jsx'
 import PostList from './components/posts/PostList.jsx'
 import LogIn from './components/LogIn.jsx'
@@ -16,7 +16,7 @@ createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
       <Route element={<App />}>
-        <Route index element={<PostList />} />
+        <Route index element={<Navigate to='posts' />} />
         <Route path='log-in' element={<LogIn />} />
         <Route path='log-out' element={<LogOut />} />
         {PostsRoute}
