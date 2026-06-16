@@ -12,6 +12,7 @@ import TagsRoute from './components/tags/TagsRoute.jsx'
 import PostsRoute from './components/posts/PostsRoute.jsx'
 import UsersRoute from './components/users/UsersRoute.jsx'
 
+
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
@@ -19,9 +20,11 @@ createRoot(document.getElementById('root')).render(
         <Route index element={<PostList />} />
         <Route path='log-in' element={<LogIn />} />
         <Route path='log-out' element={<LogOut />} />
+
         {PostsRoute}
         {TagsRoute}
         {UsersRoute}
+
       </Route>
     </Routes>
   </BrowserRouter>,

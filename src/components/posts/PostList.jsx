@@ -29,6 +29,7 @@ const PostList = () => {
 
   return (
     <>
+      {user ? <Link to='/posts/new'>new</Link> : <></>}
       {posts ? (
         <ul className='mt-4'>
           {posts.map((post) => (
