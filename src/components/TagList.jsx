@@ -28,6 +28,7 @@ const TagList = () => {
 
   return (
     <>
+      {user ? <Link to='/tags/new'>new</Link> : <></>}
       {tags ? (
         <ul className='mt-4'>
           {tags.map((tag) => (

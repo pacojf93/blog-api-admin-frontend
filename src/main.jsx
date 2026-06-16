@@ -13,6 +13,7 @@ import TaggedPosts from './components/TaggedPosts.jsx'
 import UserList from './components/UserList.jsx'
 import TagList from './components/TagList.jsx'
 import UserDetail from './components/UserDetail.jsx'
+import NewTag from './components/NewTag.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -24,7 +25,8 @@ createRoot(document.getElementById('root')).render(
         <Route path='posts' element={<PostList />} />
         <Route path='posts/:id' element={<PostDetail />} />
         <Route path='tags' element={<TagList />} />
-        <Route path='tags/:id' element={<TaggedPosts />} />        
+        <Route path='tags/:id' element={<TaggedPosts />} />
+        <Route path='tags/new' element={<NewTag />} />       
         <Route path='users' element={<UserList />} />
         <Route path='users/:id' element={<UserDetail />} />
       </Route>
