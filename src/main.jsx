@@ -15,12 +15,15 @@ createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
       <Route element={<App />}>
-        <Route index element={<PostList />}/>
+        <Route index element={<PostList />} />
         <Route path='posts/:id' element={<PostDetail />} />
         <Route path='log-in' element={<LogIn />} />
         <Route path='log-out' element={<LogOut />} />
         <Route path='tags/:id' element={<TaggedPosts />} />
+        <Route path='posts' element={<PostList />} />
+        <Route path='users' element={<h1>User list</h1>} />
+        <Route path='tags' element={<h1>Tag list</h1>} />
       </Route>
     </Routes>
-  </BrowserRouter>
+  </BrowserRouter>,
 )

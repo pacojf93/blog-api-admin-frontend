@@ -1,10 +1,10 @@
-import { useParams, useOutletContext, Link } from "react-router";
-import { useState, useEffect } from "react";
-import CommentForm from "./CommentForm";
+import { useParams, useOutletContext, Link } from 'react-router'
+import { useState, useEffect } from 'react'
+import CommentForm from './CommentForm'
 
 const leaveAComment = (user, id, content, comments, setComments) => {
   fetch(`/api/comments/${id}`, {
-    method: "POST",
+    method: 'POST',
     headers: {
       Authorization: `Bearer ${user.token}`,
     },
@@ -13,46 +13,46 @@ const leaveAComment = (user, id, content, comments, setComments) => {
     }),
   })
     .then((res) => res.json())
-    .then((c) => setComments([...comments, c]));
-};
+    .then((c) => setComments([...comments, c]))
+}
 
 const PostDetail = () => {
-  const { id } = useParams();
-  const [post, setPost] = useState(null);
-  const [comments, setComments] = useState(null);
-  const [tags, setTags] = useState(null);
-  const { user, setUser } = useOutletContext();
+  const { id } = useParams()
+  const [post, setPost] = useState(null)
+  const [comments, setComments] = useState(null)
+  const [tags, setTags] = useState(null)
+  const { user, setUser } = useOutletContext()
 
   useEffect(() => {
     fetch(`/api/posts/${id}`)
       .then((res) => res.json())
-      .then((res) => setPost(res));
+      .then((res) => setPost(res))
     fetch(`/api/posts/${id}/comments`)
       .then((res) => res.json())
-      .then((res) => setComments(res));
+      .then((res) => setComments(res))
     fetch(`/api/posts/${id}/tags`)
       .then((res) => res.json())
-      .then((res) => setTags(res));
-  }, []);
+      .then((res) => setTags(res))
+  }, [])
 
   return (
     <>
       {post ? (
         <div>
-          <h2 className="my-4">{post.title}</h2>
-          <p className="mt-4">{post.content}</p>
+          <h2 className='my-4'>{post.title}</h2>
+          <p className='mt-4'>{post.content}</p>
         </div>
       ) : (
         <p>post not available</p>
       )}
       {comments ? (
         <>
-          <h3 className="mt-5">Comments</h3>
+          <h3 className='mt-5'>Comments</h3>
           {comments.map((c) => (
-            <div className="card mt-2">
-              <div className="card-body">
-                <h4 className="card-title">{c.user.username}</h4>
-                <p className="card-text">{c.content}</p>
+            <div className='card mt-2'>
+              <div className='card-body'>
+                <h4 className='card-title'>{c.user.username}</h4>
+                <p className='card-text'>{c.content}</p>
               </div>
             </div>
           ))}
@@ -71,10 +71,10 @@ const PostDetail = () => {
       )}
       {tags ? (
         <>
-          <h3 className="mt-5">Tags</h3>
+          <h3 className='mt-5'>Tags</h3>
           {tags.map((t) => (
             <Link to={`/tags/${t.id}`}>
-              <span className="badge rounded-pill text-bg-primary me-2 mt-2">
+              <span className='badge rounded-pill text-bg-primary me-2 mt-2'>
                 {t.name}
               </span>
             </Link>
@@ -84,7 +84,7 @@ const PostDetail = () => {
         <p>this post has no tags</p>
       )}
     </>
-  );
-};
+  )
+}
 
-export default PostDetail;
+export default PostDetail

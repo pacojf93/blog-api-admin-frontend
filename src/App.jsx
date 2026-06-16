@@ -20,6 +20,18 @@ const App = () => {
           <Link to='log-in'>Log in</Link>
         )}
 
+        <div>
+          <Link to='/posts' className='me-4'>
+            Posts
+          </Link>
+          <Link to='/users' className='me-4'>
+            Users
+          </Link>
+          <Link to='/tags' className='me-4'>
+            Tags
+          </Link>
+        </div>
+
         <Outlet context={{ user, setUser, navigate }} />
       </div>
     </>
