@@ -20,7 +20,7 @@ const App = () => {
           <Link to='log-in'>Log in</Link>
         )}
 
-        <div>
+        <div className=''>
           <Link to='/posts' className='me-4'>
             Posts
           </Link>
