@@ -11,6 +11,7 @@ import LogIn from './components/LogIn.jsx'
 import LogOut from './components/LogOut.jsx'
 import TaggedPosts from './components/TaggedPosts.jsx'
 import UserList from './components/UserList.jsx'
+import TagList from './components/TagList.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -21,7 +22,7 @@ createRoot(document.getElementById('root')).render(
         <Route path='log-out' element={<LogOut />} />
         <Route path='posts' element={<PostList />} />
         <Route path='posts/:id' element={<PostDetail />} />
-        <Route path='tags' element={<h1>Tag list</h1>} />
+        <Route path='tags' element={<TagList />} />
         <Route path='tags/:id' element={<TaggedPosts />} />        
         <Route path='users' element={<UserList />} />
         <Route path='users/:id' element={<h1>User detail</h1>} />
