@@ -7,14 +7,18 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "node ./postinstall.cjs"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "@tinymce/tinymce-react": "^6.3.0",
     "bootstrap": "^5.3.8",
+    "fs-extra": "^11.3.5",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-router": "^7.17.0"
+    "react-router": "^7.17.0",
+    "tinymce": "^8.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
