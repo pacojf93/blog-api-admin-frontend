@@ -3,6 +3,7 @@ import Posts from './Posts'
 import PostList from './PostList'
 import PostDetail from './PostDetail'
 import PostEditor from './PostEditor'
+import DeletePost from './DeletePost'
 
 const PostsRoute = (
   <Route path='posts' element={<Posts />}>
@@ -10,6 +11,7 @@ const PostsRoute = (
     <Route path='new' element={<h1>nu post</h1>} />
     <Route path=':id' element={<PostDetail />} />
     <Route path=':id/edit' element={<PostEditor />} />
+    <Route path=':id/delete' element={<DeletePost />} />
   </Route>
 )
 
