@@ -1,15 +1,16 @@
 import { useParams, useOutletContext, Link } from 'react-router'
 import { useState, useEffect } from 'react'
 
-const TaggedPosts = () => {
+const TagDetail = () => {
   const { id } = useParams()
   const [posts, setPosts] = useState(null)
+  const { user } = useOutletContext()
 
   useEffect(() => {
     fetch(`/api/tags/${id}/posts`)
       .then((res) => res.json())
       .then((res) => setPosts(res))
-  }, [posts])
+  }, [id])
 
   return (
     <>
@@ -29,8 +30,17 @@ const TaggedPosts = () => {
       ) : (
         <p>This tag has no tagged posts</p>
       )}
+      {user ? (
+        <div className='mt-5'>
+          <Link to={`/tags/${id}/delete`} className='me-4'>
+            Delete
+          </Link>
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   )
 }
 
-export default TaggedPosts
+export default TagDetail
