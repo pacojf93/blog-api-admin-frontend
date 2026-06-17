@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useOutletContext, useParams } from 'react-router'
-import Tinymce from '../Editor'
+import Tinymce from './Tinymce'
 
 const savePost = (post, user, content) => {
   const headers =
