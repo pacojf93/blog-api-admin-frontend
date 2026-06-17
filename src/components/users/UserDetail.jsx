@@ -53,6 +53,15 @@ const UserDetail = () => {
       ) : (
         <p>This user has no comments</p>
       )}
+      {user ? (
+        <div className='mt-5'>
+          <Link to={`/users/${id}/delete`} className='me-4'>
+            Delete
+          </Link>
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   )
 }

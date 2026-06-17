@@ -15,10 +15,10 @@ const UserList = () => {
   const [users, setUsers] = useState(null)
   const { user } = useOutletContext()
 
-  const headers =
-    user && user.token ? { Authorization: `Bearer ${user.token}` } : {}
-
   useEffect(() => {
+    const headers =
+      user && user.token ? { Authorization: `Bearer ${user.token}` } : {}
+
     fetch('/api/users', {
       headers: headers,
     })
