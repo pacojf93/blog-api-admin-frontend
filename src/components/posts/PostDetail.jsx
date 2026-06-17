@@ -88,7 +88,8 @@ const PostDetail = () => {
       )}
       {user ? (
         <div className='mt-5'>
-          <Link to={`/posts/${id}/edit`}>Edit</Link>
+          <Link to={`/posts/${id}/edit`} className='me-4'>Edit</Link>
+          <Link to={`/posts/${id}/delete`} className='me-4'>Delete</Link>
         </div>
       ) : (
         <></>
