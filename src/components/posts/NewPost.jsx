@@ -15,10 +15,10 @@ const NewPost = () => {
         title: 'New post',
         abstract: 'A new, un-edited post',
         content: 'Write some content here',
-        userId: '1'
+        userId: user.id
       }),
     }).then((response) => response.json)
-    navigate(-1)
+    navigate('')
   }, [])
 
   return <h2>Creating new post</h2>
