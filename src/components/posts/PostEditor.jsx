@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from 'react'
-import { useOutletContext, useParams, Link } from 'react-router'
+import { useState, useRef, useEffect, useContext } from 'react'
+import { useParams, Link } from 'react-router'
 import Tinymce from './Tinymce'
+import { BlogContext } from '../../App'
 
 const saveEditedFields = (id, user, title, abstract, content) => {
   const headers =
@@ -88,7 +89,7 @@ const unpublishPost = (id, user, post, setPost) => {
 
 const PostEditor = () => {
   const { id } = useParams()
-  const { user, navigate } = useOutletContext()
+  const { user, navigate } = useContext(BlogContext)
   const [post, setPost] = useState(null)
   const [title, setTitle] = useState('')
   const [abstract, setAbstract] = useState('')

@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
-import { Link, useOutletContext } from 'react-router'
+import { useState, useEffect, useContext } from 'react'
+import { Link } from 'react-router'
+import { BlogContext } from '../../App'
 
 const Tag = ({ name, id }) => (
   <div className='mt-2 card'>
@@ -13,7 +14,7 @@ const Tag = ({ name, id }) => (
 
 const TagList = () => {
   const [tags, setTags] = useState(null)
-  const { user } = useOutletContext()
+  const { user } = useContext(BlogContext)
 
   const headers =
     user && user.token ? { Authorization: `Bearer ${user.token}` } : {}

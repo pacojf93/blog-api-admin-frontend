@@ -1,8 +1,8 @@
-import { useOutletContext } from 'react-router'
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
+import { BlogContext } from '../../App'
 
 const NewPost = () => {
-  const { user, navigate } = useOutletContext()
+  const { user, navigate } = useContext(BlogContext)
 
   const headers =
     user && user.token ? { Authorization: `Bearer ${user.token}` } : {}

@@ -1,5 +1,11 @@
 import { Outlet, Link, useNavigate } from 'react-router'
-import { useState } from 'react'
+import { useState, createContext } from 'react'
+
+export const BlogContext = createContext({
+  user: null,
+  setUser: null,
+  navigate: null,
+})
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -7,7 +13,8 @@ const App = () => {
 
   return (
     <>
-      <div className='container'>
+      <BlogContext value={{user, setUser, navigate}}>
+<div className='container'>
         <Link to='/'>
           <h1 className='my-4'>Blog api admin frontend</h1>
         </Link>
@@ -39,6 +46,8 @@ const App = () => {
 
         <Outlet context={{ user, setUser, navigate }} />
       </div>
+      </BlogContext>
+      
     </>
   )
 }

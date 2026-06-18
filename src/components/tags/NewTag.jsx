@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useOutletContext } from 'react-router'
+import { useState, useContext } from 'react'
+import { BlogContext } from '../../App'
 
 const newTag = (name, user) => {
   const headers =
@@ -16,7 +16,7 @@ const newTag = (name, user) => {
 
 const NewTag = () => {
   const [name, setName] = useState('')
-  const { user, navigate } = useOutletContext()
+  const { user, navigate } = useContext(BlogContext)
 
   return (
     <>

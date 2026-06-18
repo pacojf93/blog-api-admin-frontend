@@ -1,8 +1,8 @@
-import { useOutletContext } from 'react-router'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
+import { BlogContext } from '../App'
 
 const LogOut = () => {
-  const { setUser, navigate } = useOutletContext()
+  const { setUser, navigate } = useContext(BlogContext)
 
   useEffect(() => {
     setUser(null)

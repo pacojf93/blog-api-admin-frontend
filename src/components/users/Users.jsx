@@ -1,7 +1,9 @@
-import { Link, useOutletContext, Outlet } from 'react-router'
+import { useContext } from 'react'
+import { Link, Outlet } from 'react-router'
+import { BlogContext } from '../../App'
 
 const Users = () => {
-  const { user, navigate } = useOutletContext()
+  const { user, navigate } = useContext(BlogContext)
 
   return (
     <>

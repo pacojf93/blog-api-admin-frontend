@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useOutletContext } from 'react-router'
+import { useContext, useState } from 'react'
+import { BlogContext } from '../App'
 
 const logIn = (username, password, setUser) => {
   fetch('/api/users/log-in', {
@@ -19,7 +19,7 @@ const logIn = (username, password, setUser) => {
 const LogIn = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const { user, setUser, navigate } = useOutletContext()
+  const { user, setUser, navigate } = useContext(BlogContext)
 
   return (
     <>

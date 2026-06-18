@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useOutletContext, useParams } from 'react-router'
+import { BlogContext } from '../../App'
 
 const deleteComment = (id, user) => {
   const headers =
@@ -15,7 +16,7 @@ const deleteComment = (id, user) => {
 
 const DeleteComment = () => {
   const { id } = useParams()
-  const { user, navigate } = useOutletContext()
+  const { user, navigate } = useContext(BlogContext)
   const [comment, setComment] = useState(null)
 
   useEffect(() => {

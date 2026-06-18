@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useOutletContext } from 'react-router'
+import { useState, useContext } from 'react'
+import { BlogContext } from '../../App'
 
 const newUser = (username, password, user) => {
   const headers =
@@ -22,7 +22,7 @@ const newUser = (username, password, user) => {
 const NewUser = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const { user, navigate } = useOutletContext()
+  const { user, navigate } = useContext(BlogContext)
 
   return (
     <>

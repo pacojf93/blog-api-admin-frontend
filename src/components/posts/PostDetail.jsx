@@ -1,6 +1,7 @@
-import { useParams, useOutletContext, Link } from 'react-router'
-import { useState, useEffect } from 'react'
+import { useParams, Link } from 'react-router'
+import { useState, useEffect, useContext } from 'react'
 import CommentForm from './CommentForm'
+import { BlogContext } from '../../App'
 
 const leaveAComment = (user, id, content, comments, setComments) => {
   fetch(`/api/comments/${id}`, {
@@ -21,7 +22,7 @@ const PostDetail = () => {
   const [post, setPost] = useState(null)
   const [comments, setComments] = useState(null)
   const [tags, setTags] = useState(null)
-  const { user, setUser } = useOutletContext()
+  const { user, setUser } = useContext(BlogContext)
 
   useEffect(() => {
     fetch(`/api/posts/${id}`)

@@ -1,7 +1,9 @@
-import { Link, useOutletContext, Outlet } from 'react-router'
+import { Link, Outlet } from 'react-router'
+import { useContext } from 'react'
+import { BlogContext } from '../../App'
 
 const Posts = () => {
-  const { user, navigate } = useOutletContext()
+  const { user } = useContext(BlogContext)
 
   return (
     <>
@@ -18,7 +20,7 @@ const Posts = () => {
         )}
       </div>
 
-      <Outlet context={{ user, navigate }} />
+      <Outlet />
     </>
   )
 }

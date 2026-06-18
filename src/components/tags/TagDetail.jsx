@@ -1,10 +1,11 @@
-import { useParams, useOutletContext, Link } from 'react-router'
-import { useState, useEffect } from 'react'
+import { useParams, Link } from 'react-router'
+import { useState, useEffect, useContext } from 'react'
+import { BlogContext } from '../../App'
 
 const TagDetail = () => {
   const { id } = useParams()
   const [posts, setPosts] = useState(null)
-  const { user } = useOutletContext()
+  const { user } = useContext(BlogContext)
 
   useEffect(() => {
     fetch(`/api/tags/${id}/posts`)

@@ -1,12 +1,13 @@
-import { useParams, useOutletContext, Link } from 'react-router'
-import { useState, useEffect } from 'react'
+import { useParams,  Link } from 'react-router'
+import { useState, useEffect, useContext } from 'react'
+import { BlogContext } from '../../App'
 
 const UserDetail = () => {
   const { id } = useParams()
   const [detailedUser, setDetailedUser] = useState(null)
   //const [posts, setPosts] = useState(null)
   const [comments, setComments] = useState(null)
-  const { user, setUser } = useOutletContext()
+  const { user, setUser } = useContext(BlogContext)
 
   const headers =
     user && user.token ? { Authorization: `Bearer ${user.token}` } : {}
