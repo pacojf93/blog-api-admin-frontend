@@ -2,16 +2,17 @@ import { useState, useRef, useEffect } from 'react'
 import { useOutletContext, useParams, Link } from 'react-router'
 import Tinymce from './Tinymce'
 
-const savePost = (post, user, content) => {
+const saveEditedFields = (id, user, title, abstract, content) => {
   const headers =
     user && user.token ? { Authorization: `Bearer ${user.token}` } : {}
 
-  fetch(`/api/posts/${post.id}`, {
+  fetch(`/api/posts/${id}`, {
     method: 'PUT',
     headers: headers,
     body: new URLSearchParams({
-      id: post.id,
-      title: post.title,
+      id: id,
+      title: title,
+      abstract: abstract,
       content: content,
     }),
   })
@@ -89,6 +90,8 @@ const PostEditor = () => {
   const { id } = useParams()
   const { user, navigate } = useOutletContext()
   const [post, setPost] = useState(null)
+  const [title, setTitle] = useState('')
+  const [abstract, setAbstract] = useState('')
   const [content, setContent] = useState('')
   const editorRef = useRef(null)
   const [postTags, setPostTags] = useState(null)
@@ -100,6 +103,8 @@ const PostEditor = () => {
       .then((res) => {
         setPost(res)
         setContent(res.content)
+        setTitle(res.title)
+        setAbstract(res.abstract)
       })
     fetch(`/api/posts/${id}/tags`, {})
       .then((res) => res.json())
@@ -118,36 +123,82 @@ const PostEditor = () => {
 
   return (
     <>
-      {post ? (
+      <>
+        <h2 className='mt-5'>Edit post fields</h2>
         <>
-          <div className='mt-5'>
-            <Tinymce
-              editorRef={editorRef}
-              initialValue={post.content}
-              setContent={setContent}
-            />
-          </div>
+          <h3 className=''>Title</h3>
+          {title ? (
+            <>
+              <input
+                type='text'
+                className='form-control'
+                id='name'
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </>
+          ) : (
+            <>
+              <p>no title available</p>
+            </>
+          )}
+        </>
 
-          <button
-            onClick={() => {
-              savePost(post, user, content)
-              navigate(-1)
-            }}
-            className='mt-5 btn btn-outline-primary'
-          >
-            Save editor content
-          </button>
-          {/*           <div className='mt-5'>
+        <>
+          <h3 className='mt-5'>Abstract</h3>
+          {abstract ? (
+            <>
+              <input
+                type='text'
+                className='form-control'
+                id='name'
+                value={abstract}
+                onChange={(e) => setAbstract(e.target.value)}
+              />
+            </>
+          ) : (
+            <>
+              <p>no abstract available</p>
+            </>
+          )}
+        </>
+
+        <>
+          <h3 className='mt-5'>Content</h3>
+          {content ? (
+            <>
+              <div className=''>
+                <Tinymce
+                  editorRef={editorRef}
+                  initialValue={content}
+                  setContent={setContent}
+                />
+              </div>
+
+              {/*           <div className='mt-5'>
             <h2>Preview</h2>
             <div
               dangerouslySetInnerHTML={{ __html: content }}
               className='mt-5'
             />
           </div> */}
+            </>
+          ) : (
+            <p>no post available</p>
+          )}
         </>
-      ) : (
-        <p>no post available</p>
-      )}
+
+        <button
+          onClick={() => {
+            saveEditedFields(id, user, title, abstract, content)
+            navigate(-1)
+          }}
+          className='mt-5 btn btn-outline-primary'
+        >
+          Save edited fields
+        </button>
+      </>
+
       <>
         <h2 className='mt-5'>Edit tags</h2>
         {postTags ? (
