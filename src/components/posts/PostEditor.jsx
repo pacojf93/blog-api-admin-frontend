@@ -3,9 +3,12 @@ import { useParams, Link } from 'react-router'
 import Tinymce from './Tinymce'
 import { BlogContext } from '../../App'
 
-const saveEditedFields = (id, user, title, abstract, content) => {
+const saveEditedFields = (id, user, title, abstract, editorRef) => {
+  
   const headers =
     user && user.token ? { Authorization: `Bearer ${user.token}` } : {}
+  
+  const content = editorRef.current.getContent()
 
   fetch(`/api/posts/${id}`, {
     method: 'PUT',
@@ -112,11 +115,6 @@ const PostEditor = () => {
       .then((res) => {
         setPostTags(res)
       })
-    fetch(`/api/posts/${id}/comments`, {})
-      .then((res) => res.json())
-      .then((res) => {
-        setComments(res)
-      })
   }, [id])
 
   useEffect(() => {
@@ -133,7 +131,7 @@ const PostEditor = () => {
         <h2 className='mt-5'>Edit post fields</h2>
         <>
           <h3 className=''>Title</h3>
-          {title ? (
+          {title !== null ? (
             <>
               <input
                 type='text'
@@ -152,7 +150,7 @@ const PostEditor = () => {
 
         <>
           <h3 className='mt-5'>Abstract</h3>
-          {abstract ? (
+          {abstract !== null ? (
             <>
               <input
                 type='text'
@@ -171,7 +169,7 @@ const PostEditor = () => {
 
         <>
           <h3 className='mt-5'>Content</h3>
-          {content ? (
+          {content !== null ? (
             <>
               <div className=''>
                 <Tinymce
@@ -180,14 +178,6 @@ const PostEditor = () => {
                   setContent={setContent}
                 />
               </div>
-
-              {/*           <div className='mt-5'>
-            <h2>Preview</h2>
-            <div
-              dangerouslySetInnerHTML={{ __html: content }}
-              className='mt-5'
-            />
-          </div> */}
             </>
           ) : (
             <p>no post available</p>
@@ -196,7 +186,7 @@ const PostEditor = () => {
 
         <button
           onClick={() => {
-            saveEditedFields(id, user, title, abstract, content)
+            saveEditedFields(id, user, title, abstract, editorRef)
             navigate(-1)
           }}
           className='mt-5 btn btn-outline-primary'
