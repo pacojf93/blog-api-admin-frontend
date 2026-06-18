@@ -11,7 +11,7 @@ import LogOut from './components/LogOut.jsx'
 import TagsRoute from './components/tags/TagsRoute.jsx'
 import PostsRoute from './components/posts/PostsRoute.jsx'
 import UsersRoute from './components/users/UsersRoute.jsx'
-
+import CommentsRoute from './components/comments/CommentsRoute.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -20,11 +20,10 @@ createRoot(document.getElementById('root')).render(
         <Route index element={<Navigate to='posts' />} />
         <Route path='log-in' element={<LogIn />} />
         <Route path='log-out' element={<LogOut />} />
-
         {PostsRoute}
         {TagsRoute}
         {UsersRoute}
-
+        {CommentsRoute}
       </Route>
     </Routes>
   </BrowserRouter>,

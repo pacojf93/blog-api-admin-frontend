@@ -56,6 +56,13 @@ const PostDetail = () => {
               <div className='card-body'>
                 <h4 className='card-title'>{c.user.username}</h4>
                 <p className='card-text'>{c.content}</p>
+                {user ? (
+                  <p className='card-text'>
+                    <Link to={`/comments/${c.id}/delete`}>Delete</Link>
+                  </p>
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
           ))}

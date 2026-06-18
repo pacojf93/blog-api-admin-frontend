@@ -2,7 +2,7 @@ import { Route } from 'react-router'
 import Posts from './Posts'
 import PostList from './PostList'
 import PostDetail from './PostDetail'
-import NewPost from '../NewPost'
+import NewPost from './NewPost'
 import PostEditor from './PostEditor'
 import DeletePost from './DeletePost'
 

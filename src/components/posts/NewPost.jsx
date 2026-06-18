@@ -15,7 +15,7 @@ const NewPost = () => {
         title: 'New post',
         abstract: 'A new, un-edited post',
         content: 'Write some content here',
-        userId: user.id
+        userId: user.id,
       }),
     }).then((response) => response.json)
     navigate('')

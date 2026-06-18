@@ -111,6 +111,11 @@ const PostEditor = () => {
       .then((res) => {
         setPostTags(res)
       })
+    fetch(`/api/posts/${id}/comments`, {})
+      .then((res) => res.json())
+      .then((res) => {
+        setComments(res)
+      })
   }, [id])
 
   useEffect(() => {
