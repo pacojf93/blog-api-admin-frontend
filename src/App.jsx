@@ -11,25 +11,30 @@ const App = () => {
         <Link to='/'>
           <h1 className='my-4'>Blog api admin frontend</h1>
         </Link>
-        {user ? (
-          <div>
-            <span className='me-4'>{user.username}</span>
-            <Link to='log-out'>Log out</Link>
-          </div>
-        ) : (
-          <Link to='log-in'>Log in</Link>
-        )}
 
-        <div className=''>
-          <Link to='/posts' className='me-4'>
-            Posts
-          </Link>
-          <Link to='/users' className='me-4'>
-            Users
-          </Link>
-          <Link to='/tags' className='me-4'>
-            Tags
-          </Link>
+        <div className='d-flex alig-items-center justify-content-between'>
+          <div className=''>
+            <Link to='/posts' className='me-4'>
+              Posts
+            </Link>
+            <Link to='/users' className='me-4'>
+              Users
+            </Link>
+            <Link to='/tags' className='me-4'>
+              Tags
+            </Link>
+          </div>
+
+          <div>
+            {user ? (
+              <>
+                <span className='me-4'>{user.username}</span>
+                <Link to='log-out'>Log out</Link>
+              </>
+            ) : (
+              <Link to='log-in'>Log in</Link>
+            )}
+          </div>
         </div>
 
         <Outlet context={{ user, setUser, navigate }} />

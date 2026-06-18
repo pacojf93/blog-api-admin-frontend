@@ -40,7 +40,10 @@ const PostDetail = () => {
       {post ? (
         <div>
           <h2 className='my-4'>{post.title}</h2>
-          <p className='mt-4'>{post.content}</p>
+          <div
+            dangerouslySetInnerHTML={{ __html: post.content }}
+            className='mt-4'
+          />
         </div>
       ) : (
         <p>post not available</p>
@@ -82,6 +85,18 @@ const PostDetail = () => {
         </>
       ) : (
         <p>this post has no tags</p>
+      )}
+      {user ? (
+        <div className='mt-5'>
+          <Link to={`/posts/${id}/edit`} className='me-4'>
+            Edit
+          </Link>
+          <Link to={`/posts/${id}/delete`} className='me-4'>
+            Delete
+          </Link>
+        </div>
+      ) : (
+        <></>
       )}
     </>
   )

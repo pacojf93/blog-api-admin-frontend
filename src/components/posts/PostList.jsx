@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react'
 import { Link, useOutletContext } from 'react-router'
 
-const Post = ({ title, abstract, id }) => (
+const Post = ({ title, abstract, id, isPublished }) => (
   <div className='mt-2 card'>
     <div className='card-body'>
       <h3 className='mt-2 card-title'>
         <Link to={`/posts/${id}`}>{title}</Link>
       </h3>
       <p className='mt-2 card-text'>{abstract}</p>
+      <span className='badge rounded-pill text-bg-primary me-2 mt-2'>
+        {isPublished ? 'published' : 'unpublished'}
+      </span>
     </div>
   </div>
 )
@@ -38,6 +41,7 @@ const PostList = () => {
               title={post.title}
               abstract={post.abstract}
               id={post.id}
+              isPublished={post.isPublished}
             />
           ))}
         </ul>
