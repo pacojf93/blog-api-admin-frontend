@@ -55,6 +55,36 @@ const removeTag = (postId, tagId, user, setPostTags) => {
     })
 }
 
+const publishPost = (id, user, post, setPost) => {
+  const headers =
+    user && user.token ? { Authorization: `Bearer ${user.token}` } : {}
+
+  fetch(`/api/posts/${id}/publish`, {
+    method: 'PUT',
+    headers: headers,
+  })
+    .then((response) => response.json())
+    .then((res) => {
+      setPost({ ...post, isPublished: true })
+      console.log(res)
+    })
+}
+
+const unpublishPost = (id, user, post, setPost) => {
+  const headers =
+    user && user.token ? { Authorization: `Bearer ${user.token}` } : {}
+
+  fetch(`/api/posts/${id}/hide`, {
+    method: 'PUT',
+    headers: headers,
+  })
+    .then((response) => response.json())
+    .then((res) => {
+      setPost({ ...post, isPublished: false })
+      console.log(res)
+    })
+}
+
 const PostEditor = () => {
   const { id } = useParams()
   const { user, navigate } = useOutletContext()
@@ -118,41 +148,75 @@ const PostEditor = () => {
       ) : (
         <p>no post available</p>
       )}
-      <h2 className='mt-5'>Edit tags</h2>
-      {postTags ? (
-        <>
-          <h3 className='mt-5'>Related tags</h3>
-          {postTags.map((t) => (
-            <button
-              onClick={() => removeTag(id, t.id, user, setPostTags)}
-              className='badge rounded-pill text-bg-primary me-2 mt-2'
-              title='remove tag'
-            >
-              {t.name}
-            </button>
-          ))}
-        </>
-      ) : (
-        <p>this post has no tags</p>
-      )}
-      {otherTags && postTags ? (
-        <>
-          <h3 className='mt-5'>Unrelated tags</h3>
-          {otherTags
-            .filter((t) => !postTags.some((pt) => pt.id === t.id))
-            .map((t) => (
+      <>
+        <h2 className='mt-5'>Edit tags</h2>
+        {postTags ? (
+          <>
+            <h3 className=''>Related tags</h3>
+            {postTags.map((t) => (
               <button
-                onClick={() => addTag(id, t.id, user, setPostTags)}
+                onClick={() => removeTag(id, t.id, user, setPostTags)}
                 className='badge rounded-pill text-bg-primary me-2 mt-2'
-                title='add tag'
+                title='remove tag'
               >
                 {t.name}
               </button>
             ))}
-        </>
-      ) : (
-        <p>there is no tags available</p>
-      )}
+          </>
+        ) : (
+          <p>this post has no tags</p>
+        )}
+        {otherTags && postTags ? (
+          <>
+            <h3 className='mt-5'>Unrelated tags</h3>
+            {otherTags
+              .filter((t) => !postTags.some((pt) => pt.id === t.id))
+              .map((t) => (
+                <button
+                  onClick={() => addTag(id, t.id, user, setPostTags)}
+                  className='badge rounded-pill text-bg-primary me-2 mt-2'
+                  title='add tag'
+                >
+                  {t.name}
+                </button>
+              ))}
+          </>
+        ) : (
+          <p>there is no tags available</p>
+        )}
+      </>
+      <>
+        <h2 className='mt-5'>Edit visibility</h2>
+        {post ? (
+          <>
+            {post.isPublished ? (
+              <>
+                <p>Users can view this post</p>
+                <button
+                  className='btn btn-outline-primary'
+                  onClick={() => unpublishPost(id, user, post, setPost)}
+                >
+                  unpublish
+                </button>
+              </>
+            ) : (
+              <>
+                <p>Users can't view this post</p>
+                <button
+                  className='btn btn-outline-primary'
+                  onClick={() => publishPost(id, user, post, setPost)}
+                >
+                  publish
+                </button>
+              </>
+            )}
+          </>
+        ) : (
+          <>
+            <p>no post available</p>
+          </>
+        )}
+      </>
     </>
   )
 }
